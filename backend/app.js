@@ -11,7 +11,7 @@ require('dotenv').config();
 const port = process.env.PORT || 4000;
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_APP_URL,
     credentials: true,
 }));
 app.use(cookieParser());
@@ -32,7 +32,7 @@ const server = app.listen(port, async () => {
 
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: process.env.REACT_APP_URL
     }
 });
 require('./utils/socket')(io); 

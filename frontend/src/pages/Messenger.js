@@ -6,7 +6,7 @@ import MessengerHeader from "../components/MessengerHeader";
 import MessengerBody from "../components/MessengerBody";
 
 
-const socket = socketIO('http://localhost:4000');
+const socket = socketIO(process.env.REACT_APP_API_URL);
 
 const Messenger = () => {
 
@@ -18,7 +18,7 @@ const Messenger = () => {
             username: sessionStorage.getItem('username')
         })
 
-        fetch('http://localhost:4000/api/get-friends', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/get-friends`, {
             method: "GET",
             headers: {
               'Content-Type': 'application/json'

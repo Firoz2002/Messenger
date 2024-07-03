@@ -71,7 +71,7 @@ const updateFriendRequest = (req, res, next) => {
             })
         .then((data) => {
             if(data.status === 'accepted') {
-                fetch('http://localhost:4000/api/add-friend', {
+                fetch(`${process.env.BASE_URL}/api/add-friend`, {
                     method: "POST",
                     headers: {
                       'Content-Type': 'application/json',

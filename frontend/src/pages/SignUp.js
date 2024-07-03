@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { redirect } from 'react-router-dom';
 
 import '../App.css';
 import Navbar from '../components/Navbar';
@@ -13,7 +12,7 @@ const SignUp = () => {
 
     const formSubmitHandler = (e) => {
       e.preventDefault();
-      fetch('http://localhost:4000/api/signup', {
+      fetch(`${process.env.REACT_APP_API_URL}/api/signup`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -25,7 +24,6 @@ const SignUp = () => {
         })
       })
       .then((res) => {
-        console.log(res.status);
         if(res.status === 400 || res.status === 401) {
           alert('Error');
         } else if (res.status === 200) {

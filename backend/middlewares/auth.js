@@ -8,7 +8,7 @@ const register =  async (req, res, next) => {
     try {
         const hash = await bcrypt.hash(req.body.password, 10);
 
-        fetch('http://localHost:4000/api/create-user', {
+        fetch(`${process.env.BASE_URL}/api/create-user`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const login = (req, res, next) => {
     const { username, password } = req.body;
 
     try {
-        fetch(`http://localHost:4000/api/get-user/?username=${username}`, {
+        fetch(`${process.env.BASE_URL}/api/get-user/?username=${username}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'

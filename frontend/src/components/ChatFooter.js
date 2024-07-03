@@ -7,14 +7,14 @@ const ChatFooter = ({socket}) => {
 
     const handleSendMessage = (event) => {
         event.preventDefault();
-        fetch('http://localhost:4000/api/messages/save-message', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/messages/save-message`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
             },
             credentials: 'include',
             body: JSON.stringify({
-                sendTo: (document.URL).replace("http://localhost:3000/messenger/", ""),
+                sendTo: (document.URL).replace(`${process.env.REACT_APP_URL}/messenger/`, ""),
                 message: message
             })
         })
@@ -22,7 +22,7 @@ const ChatFooter = ({socket}) => {
             if(res.status === 200) {
                 socket.emit('chat', {
                     sendBy: window.sessionStorage.getItem('username'),
-                    sendTo: (document.URL).replace("http://localhost:3000/messenger/", ""),
+                    sendTo: (document.URL).replace(`${process.env.REACT_APP_URL}/messenger/`, ""),
                     message: message,
                     roomId: sessionStorage.getItem('roomId')
                 })

@@ -18,7 +18,7 @@ const MessengerHeader = () => {
     }
 
     const friendRequestHandler = () => {
-        fetch('http://localhost:4000/api/send-friend-request', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/send-friend-request`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const MessengerHeader = () => {
         setFoundUser('');
         e.preventDefault(); 
         if(userToFind && userToFind != sessionStorage.getItem('username')) {
-            fetch(`http://localhost:4000/api/search/?username=${userToFind}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/search/?username=${userToFind}`, {
                 method: "GET",
                 headers: {
                   'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ const MessengerHeader = () => {
                     </form>
                 </div>
 
-                <div className="profile" onClick={() => {return navigate('/messenger/user-profile')}}>
+                <div className="profile" onClick={() => {/*return navigate('/messenger/user-profile')*/}}>
                     <img className="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="user-profile-pic"/>
                 </div>
             </div>

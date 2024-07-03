@@ -12,25 +12,24 @@ import ChatFooter from "../components/ChatFooter";
 const ChatRoom = () => {
 
   const [messages, setMessages] = useState([]);
-  const socket = socketIO('http://localhost:4000');
+  const socket = socketIO(process.env.REACT_APP_API_URL);
 
   useEffect(() => {
     socket.emit('joined-user', {
       username: window.sessionStorage.getItem('username'),
-      roomname: (document.URL).replace("http://localhost:3000/messenger/", "")
+      roomname: (document.URL).replace(`${process.env.REACT_APP_URL}/messenger/`, "")
     })
   }, [])
 
   useEffect(() => {
     socket.on('joined-user', (data) => {
-      console.log(data);
       sessionStorage.setItem('roomId', data.roomId)
       console.log("User:- " + data.username + " joined room: "  + data.roomId);
     })
   })
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/get-messages/messages?to=${(document.URL).replace("http://localhost:3000/messenger/", "")}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/get-messages/messages?to=${(document.URL).replace(`${process.env.REACT_APP_URL}/messenger/`, "")}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'

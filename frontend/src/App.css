@@ -165,13 +165,13 @@ form .form-group:last-child {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 385px) {
   .search-bar input{
     max-width: 150px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 325px) {
   .search-bar input{
     max-width: 100px;
   }

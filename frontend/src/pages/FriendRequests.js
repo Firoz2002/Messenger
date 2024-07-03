@@ -6,7 +6,7 @@ const FriendRequestMenu = () => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/get-friend-requests',{
+        fetch(`${process.env.REACT_APP_API_URL}/api/get-friend-requests`,{
             method: "GET",
             headers: {
               'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ const FriendRequestMenu = () => {
     }, [])
 
     const requestHandler = (event) => {
-        fetch('http://localhost:4000/api/update-friend-request',{
+        fetch(`${process.env.REACT_APP_API_URL}/api/update-friend-request`,{
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
