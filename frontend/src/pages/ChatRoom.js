@@ -12,7 +12,7 @@ import ChatFooter from "../components/ChatFooter";
 const ChatRoom = () => {
 
   const [messages, setMessages] = useState([]);
-  const socket = socketIO(process.env.REACT_APP_API_URL);
+  const socket = socketIO(process.env.REACT_APP_API_URL, {transports: ['websocket']});
 
   useEffect(() => {
     socket.emit('joined-user', {
