@@ -45,7 +45,7 @@ const MessengerHeader = () => {
     const searchHandler = (e) => {
         setFoundUser('');
         e.preventDefault(); 
-        if(userToFind && userToFind != sessionStorage.getItem('username')) {
+        if(userToFind && userToFind !== sessionStorage.getItem('username')) {
             fetch(`${process.env.REACT_APP_API_URL}/api/search/?username=${userToFind}`, {
                 method: "GET",
                 headers: {
